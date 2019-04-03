@@ -1,29 +1,9 @@
-# user
+# User dashboard
 
-## Project setup
-```
-npm install
-```
+main functionnalities:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- manage user account
+- manage consoles
+- manage bills
+- manage games on the consoles and explore the librarie
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
