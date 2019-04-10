@@ -1,31 +1,36 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app dark>
+    <component v-bind:is="$route.meta.layout">
+      <router-view />
+    </component>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<script>
+import DashboardLayout from './layouts/DashboardLayout'
+import CenterLayout from './layouts/CenterLayout'
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+export default {
+  name: '',
+  components: { CenterLayout, DashboardLayout },
+  mounted () {
+    this.computeIsMobile(window.innerWidth)
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+    window.addEventListener('resize', () => {
+      this.windowWidth = window.innerWidth
+    })
+  },
+  'windowWidth': function (windowWidth) {
+    this.computeIsMobile(windowWidth)
+  },
+  methods: {
+    computeIsMobile: function (windowWidth) {
+      let isMobile = (windowWidth <= 800)
+      console.log(isMobile)
+      if (this.$store.state.isMobile !== isMobile) {
+        this.$store.commit('SET_IS_MOBILE', isMobile)
+      }
+    }
+  }
 }
-</style>
+</script>
